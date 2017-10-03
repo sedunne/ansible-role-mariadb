@@ -1,0 +1,54 @@
+---
+mariadb_version: 10.1
+mysql_port: 3306
+mysql_socket: /var/lib/mysql/mysql.sock
+mysql_bind_address:
+mysql_extra_port: 3307
+mysql_max_connect_errors: = {{ mysql_max_connections * 2}}
+mysql_max_connections: 512
+mysql_extra_max_connections: 1
+mysql_max_allowed_packet: 1024M
+mysql_data_dir: /var/lib/mysql
+mysql_pid_file: /var/run/mysql/mysql.pid
+mysql_tmp_dir: /dev/shm
+mysql_table_open_cache: 256
+mysql_table_definition_cache: 2048
+mysql_open_file_limit: 16384
+mysql_thread_cache_size: 75
+mysql_sql_mode: NO_ENGINE_SUBSTITUTION
+mysql_lower_case_table_names: 0
+mysql_performance_schema: OFF
+mysql_key_buffer_size: 16M
+mysql_myisam_sort_buffer_size: 8M
+mysql_tmp_table_size: 80M
+mysql_max_heap_table_size: {{ mysql_tmp_table_size }}
+mysql_query_cache_size: 80M
+mysql_query_cache_limit: 1M
+mysql_lock_wait_timeout: 120
+mysql_wait_timeout: 1800
+mysql_sort_buffer_size: 1M
+mysql_read_buffer_size: 1M
+mysql_rnd_buffer_size: 1M
+mysql_max_sort_length: 1024
+mysql_myisam_recover_options: BACKUP,FORCE
+mysql_innodb_buffer_pool_size:
+mysql_innodb_buffer_pool_instances: 2
+mysql_innodb_large_prefix: 1
+mysql_innodb_file_format: barracuda
+mysql_innodb_file_per_table: 1
+mysql_innodb_log_file_size: 2000M
+mysql_innodb_log_buffer_size:
+mysql_innodb_flush_log_at_trx_commit: 0
+mysql_innodb_lock_wait_timeout: 50
+mysql_innodb_concurrency_tickets: 5000
+mysql_innodb_io_capacity: 750
+mysql_innodb_flush_neighbors: 0
+mysql_innodb_flush_method: O_DIRECT
+mysql_innodb_ft_min_token_size: 2
+mysql_innodb_stats_on_metadata: OFF
+mysql_log_error: /var/log/mysql.log
+mysql_max_allowed_packet: 1024M
+
+
+
+
