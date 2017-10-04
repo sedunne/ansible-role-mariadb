@@ -1,27 +1,42 @@
 ---
 
-- name: remove existing mariadb install
-  yum: pkg={{item}} state=absent
+- name: Remove Existing MariaDB Install
+  yum:
+   pkg="{{item}}"
+   state="absent"
   with_items:
    - MariaDB
    - MariaDB-server
    - MariaDB-libs
 
 - name: Add MariaDB repo
-  template: src=mariadb_centos.repo.j2 dest=/etc/yum.repos.d/mariadb.repo owner=root group=root mode=0644
+  template:
+    src="mariadb_centos.repo.j2"
+    dest="/etc/yum.repos.d/mariadb.repo"
+    owner="root"
+    group="root"
+    mode="0644"
 
 - name: Install MariaDB
-  yum: name={{ item }} enablerepo=mariadb state=present
+  yum:
+    name="{{ item }}"
+    enablerepo="mariadb"
+    state=present
   with_items:
     - MariaDB-server
     - MariaDB-client
     - MariaDB-libs
 
-- name: set my.cnf
-  template: src=my.cnf.j2 dest= \etc\my.cnf owner=root group=root mode=0644
+- name: Set Configuration File
+  template:
+    src="my.cnf.j2"
+    dest="\etc\my.cnf"
+    owner="root"
+    group="root"
+    mode=0644
   notify: restart mysql
 
-- name: enable mariadb
+- name: Enable MariaDB
   systemd:
     name: mariadb-server
     state: started
