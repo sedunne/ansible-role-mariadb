@@ -2,7 +2,7 @@
 mariadb_version: 10.1
 mysql_port: 3306
 mysql_socket: "/var/lib/mysql/mysql.sock"
-mysql_bind_address:
+mysql_bind_address: "{{ ansible_eth0.ipv4.address }}"
 mysql_extra_port: 3307
 mysql_max_connect_errors: = 1024
 mysql_max_connections: 512
