@@ -9,7 +9,7 @@
    - MariaDB-server
    - MariaDB-libs
 
-- name: Add MariaDB repo
+- name: Add MariaDB Repo
   template:
     src="mariadb_centos.repo.j2"
     dest="/etc/yum.repos.d/mariadb.repo"
