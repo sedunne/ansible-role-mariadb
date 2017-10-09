@@ -7,7 +7,7 @@
   with_items:
    - MariaDB
    - MariaDB-server
-   - MariaDB-libs
+   - mysql-libs
 
 - name: Add MariaDB Repo
   template:
@@ -25,7 +25,7 @@
   with_items:
     - MariaDB-server
     - MariaDB-client
-    - MariaDB-libs
+    - mysql-libs
 
 - name: Set Configuration File
   template:
