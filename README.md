@@ -14,7 +14,7 @@ See `defaults/main.yml`.
 
 ## Example Playbook
 
-    - hosts: php_hosts
+    - hosts: mariadb_hosts
       roles:
         - nexcess.mariadb
 
