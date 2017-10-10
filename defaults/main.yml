@@ -4,13 +4,12 @@ mysql_port: 3306
 mysql_socket: "/var/lib/mysql/mysql.sock"
 mysql_bind_address: "{{ frontnet_addr }}"
 mysql_extra_port: 3307
-mysql_max_connect_errors: = 1024
+mysql_max_connect_errors:  1024
 mysql_max_connections: 512
 mysql_extra_max_connections: 1
 mysql_max_allowed_packet: "1024M"
 mysql_data_dir: "/var/lib/mysql"
 mysql_pid_file: "/var/run/mysql/mysql.pid"
-mysql_tmp_dir: "/dev/shm"
 mysql_table_open_cache: 256
 mysql_table_definition_cache: 2048
 mysql_open_file_limit: 16384
@@ -47,7 +46,6 @@ mysql_innodb_flush_method: "O_DIRECT"
 mysql_innodb_ft_min_token_size: 2
 mysql_innodb_stats_on_metadata: "OFF"
 mysql_log_error: "/var/log/mysql.log"
-mysql_max_allowed_packet: "1024M"
 
 
 
