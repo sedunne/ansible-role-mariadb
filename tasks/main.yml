@@ -16,8 +16,8 @@
   file:
     path: /var/run/mysql
     state: directory
-    owner: root
-    group: root
+    owner: mysql
+    group: mysql
     mode: 0755
     recurse: yes
 
