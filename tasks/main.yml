@@ -21,7 +21,7 @@
     state="directory"
     owner="mysql"
     group="mysql"
-    mode="0755"
+    mode=0755
     recurse="yes"
 
 - name: Add MariaDB Repo
@@ -30,7 +30,7 @@
     dest="/etc/yum.repos.d/mariadb.repo"
     owner="root"
     group="root"
-    mode="0644"
+    mode=0644
 
 - name: Install MariaDB
   yum:
