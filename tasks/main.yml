@@ -9,13 +9,28 @@
    - MariaDB-server
    - mysql-libs
 
+- name: Allow MariaDB Port In SELinux
+  seboolean:
+    name="mysql_connect_any"
+    state="true"
+    persistent="yes"
+
+- name: Creates PID Directory
+  file:
+    path="/var/run/mysql"
+    state="directory"
+    owner="mysql"
+    group="mysql"
+    mode=0755
+    recurse="yes"
+
 - name: Add MariaDB Repo
   template:
     src="mariadb_centos.repo.j2"
     dest="/etc/yum.repos.d/mariadb.repo"
     owner="root"
     group="root"
-    mode="0644"
+    mode=0644
 
 - name: Install MariaDB
   yum:
@@ -30,15 +45,15 @@
 - name: Set Configuration File
   template:
     src="my.cnf.j2"
-    dest="\etc\my.cnf"
+    dest="/etc/my.cnf.d/server.cnf"
     owner="root"
     group="root"
     mode=0644
-  notify: restart mysql
+  notify: restart mariadb
 
 - name: Enable MariaDB
   systemd:
-    name: mariadb-server
-    state: started
-    enabled: yes
-    masked: no
+    name="mariadb"
+    state="started"
+    enabled="yes"
+    masked="no"
