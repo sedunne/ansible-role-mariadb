@@ -11,18 +11,18 @@
 
 - name: Allow MariaDB Port In SELinux
   seboolean:
-    name: mysql_connect_any
-    state: true
-    persistent: yes
+    name="mysql_connect_any"
+    state="true"
+    persistent="yes"
 
 - name: Creates PID Directory
   file:
-    path: /var/run/mysql
-    state: directory
-    owner: "mysql"
-    group: "mysql"
-    mode: 0755
-    recurse: yes
+    path="/var/run/mysql"
+    state="directory"
+    owner="mysql"
+    group="mysql"
+    mode="0755"
+    recurse="yes"
 
 - name: Add MariaDB Repo
   template:
@@ -53,7 +53,7 @@
 
 - name: Enable MariaDB
   systemd:
-    name: mariadb
-    state: started
-    enabled: yes
-    masked: no
+    name="mariadb"
+    state="started"
+    enabled="yes"
+    maske="no"
