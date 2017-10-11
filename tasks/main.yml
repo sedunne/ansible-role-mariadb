@@ -10,7 +10,10 @@
    - mysql-libs
 
 - name: Allow MariaDB on any port in SELinux
-  seboolean: name=mysql_connect_any state=true persistent=yes
+  seboolean:
+    name: mysql_connect_any
+    state: true
+    persistent: yes
 
 - name: Creates PID Directory
   file:
