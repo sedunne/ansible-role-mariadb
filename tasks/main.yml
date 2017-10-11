@@ -9,7 +9,7 @@
    - MariaDB-server
    - mysql-libs
 
-- name: Allow MariaDB on any port in SELinux
+- name: Allow MariaDB Port In SELinux
   seboolean:
     name: mysql_connect_any
     state: true
@@ -19,8 +19,8 @@
   file:
     path: /var/run/mysql
     state: directory
-    owner: mysql
-    group: mysql
+    owner: "mysql"
+    group: "mysql"
     mode: 0755
     recurse: yes
 
@@ -49,7 +49,7 @@
     owner="root"
     group="root"
     mode=0644
-  notify: Restart MariaDB
+  notify: restart mariadb
 
 - name: Enable MariaDB
   systemd:
