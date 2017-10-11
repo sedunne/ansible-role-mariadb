@@ -56,4 +56,4 @@
     name="mariadb"
     state="started"
     enabled="yes"
-    maske="no"
+    masked="no"
