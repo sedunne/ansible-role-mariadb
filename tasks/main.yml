@@ -24,7 +24,7 @@
     mode=0755
     recurse="yes"
 
-- name: Creates PID Directory
+- name: Creates TMP Directory
   file:
     path="/dev/shm"
     state="directory"
