@@ -24,15 +24,6 @@
     mode=0755
     recurse="yes"
 
-- name: Creates TMP Directory
-  file:
-    path="/dev/shm"
-    state="directory"
-    owner="root"
-    group="root"
-    mode=0777
-    recurse="yes"
-
 - name: Add MariaDB Repo
   template:
     src="mariadb_centos.repo.j2"
