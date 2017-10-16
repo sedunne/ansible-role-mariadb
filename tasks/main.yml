@@ -57,3 +57,8 @@
     state="started"
     enabled="yes"
     masked="no"
+
+- name: MySQL Upgrade if needed
+  shell: mysql_upgrade
+  poll: 10
+  when: mysql_upgrade == 1
