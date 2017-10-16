@@ -60,5 +60,6 @@
 
 - name: MySQL Upgrade
   shell: mysql_upgrade
+  async: 45
   poll: 10
   when: mysql_upgrade == 1
