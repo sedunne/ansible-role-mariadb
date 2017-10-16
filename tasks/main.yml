@@ -1,29 +1,59 @@
 ---
 
-- name: remove existing mariadb install
-  yum: pkg={{item}} state=absent
+- name: Remove Existing MariaDB Install
+  yum:
+   pkg="{{item}}"
+   state="absent"
   with_items:
    - MariaDB
    - MariaDB-server
-   - MariaDB-libs
+   - mysql-libs
 
-- name: Add MariaDB repo
-  template: src=mariadb_centos.repo.j2 dest=/etc/yum.repos.d/mariadb.repo owner=root group=root mode=0644
+- name: Allow MariaDB Port In SELinux
+  seboolean:
+    name="mysql_connect_any"
+    state="true"
+    persistent="yes"
+
+- name: Creates PID Directory
+  file:
+    path="/var/run/mysql"
+    state="directory"
+    owner="mysql"
+    group="mysql"
+    mode=0755
+    recurse="yes"
+
+- name: Add MariaDB Repo
+  template:
+    src="mariadb_centos.repo.j2"
+    dest="/etc/yum.repos.d/mariadb.repo"
+    owner="root"
+    group="root"
+    mode=0644
 
 - name: Install MariaDB
-  yum: name={{ item }} enablerepo=mariadb state=present
+  yum:
+    name="{{ item }}"
+    enablerepo="mariadb"
+    state=present
   with_items:
     - MariaDB-server
     - MariaDB-client
-    - MariaDB-libs
+    - mysql-libs
 
-- name: set my.cnf
-  template: src=my.cnf.j2 dest= \etc\my.cnf owner=root group=root mode=0644
-  notify: restart mysql
+- name: Set Configuration File
+  template:
+    src="my.cnf.j2"
+    dest="/etc/my.cnf.d/server.cnf"
+    owner="root"
+    group="root"
+    mode=0644
+  notify: restart mariadb
 
-- name: enable mariadb
+- name: Enable MariaDB
   systemd:
-    name: mariadb-server
-    state: started
-    enabled: yes
-    masked: no
+    name="mariadb"
+    state="started"
+    enabled="yes"
+    masked="no"
