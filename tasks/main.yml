@@ -62,4 +62,4 @@
   shell: mysql_upgrade
   async: 45
   poll: 10
-  when: mysql_upgrade == 1
+  when: mysql_upgrade
