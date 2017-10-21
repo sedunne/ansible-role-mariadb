@@ -9,11 +9,18 @@
    - "MariaDB-server"
    - "mysql-libs"
 
-- name: Allow MariaDB Port In SELinux
+- name: Allow MariaDB Port(s) In SELinux
   seboolean:
     name="mysql_connect_any"
     state="true"
     persistent="yes"
+
+- name: Explicitly Allow mysql_extra_port
+  seport:
+    ports="{{ mysql_extra_port }}"
+    proto="tcp"
+    setype="mysqld_port_t"
+    state="present"
 
 - name: Creates PID Directory
   file:
