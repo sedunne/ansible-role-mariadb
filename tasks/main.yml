@@ -52,7 +52,7 @@
   yum:
     name="{{ item }}"
     enablerepo="mariadb"
-    state="present"
+    state="latest"
   with_items:
     - "MariaDB-server"
     - "MariaDB-client"
