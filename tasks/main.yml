@@ -2,12 +2,12 @@
 
 - name: Remove Existing MariaDB Install
   yum:
-   pkg="{{item}}"
+   name="{{ item }}"
    state="absent"
   with_items:
-   - MariaDB
-   - MariaDB-server
-   - mysql-libs
+   - "MariaDB"
+   - "MariaDB-server"
+   - "mysql-libs"
 
 - name: Allow MariaDB Port In SELinux
   seboolean:
@@ -24,6 +24,9 @@
     mode=0755
     recurse="yes"
 
+- name: Flush Yum Cache
+  command: yum clean all
+
 - name: Add MariaDB Repo
   template:
     src="mariadb_centos.repo.j2"
@@ -36,11 +39,11 @@
   yum:
     name="{{ item }}"
     enablerepo="mariadb"
-    state=present
+    state="present"
   with_items:
-    - MariaDB-server
-    - MariaDB-client
-    - mysql-libs
+    - "MariaDB-server"
+    - "MariaDB-client"
+    - "mysql-libs"
 
 - name: Set Configuration File
   template:
