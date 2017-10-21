@@ -3,6 +3,7 @@
 - name: See if Default MariaDB Exists
   command: rpm -q MariaDB
   register: old_mariadb_installed
+  failed_when: old_mariadb_installed.rc > 1
 
 - name: Remove Existing MariaDB Install
   yum:
