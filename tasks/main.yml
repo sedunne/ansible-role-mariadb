@@ -1,5 +1,9 @@
 ---
 
+- name: See if Default MariaDB Exists
+  command: rpm -q MariaDB
+  register: old_mariadb_installed
+
 - name: Remove Existing MariaDB Install
   yum:
    name="{{ item }}"
@@ -8,6 +12,7 @@
    - "MariaDB"
    - "MariaDB-server"
    - "mysql-libs"
+  when: old_mariadb_installed.rc == 0
 
 - name: Allow MariaDB Port(s) In SELinux
   seboolean:
