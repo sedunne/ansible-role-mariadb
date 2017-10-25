@@ -3,8 +3,11 @@ port = {{ mysql_port }}
 socket = {{ mysql_socket }}
 
 [mysqld]
-
+{% if mysql_local %}
+bind-address = 127.0.0.1
+{% else %}
 bind-address = {{ mysql_bind_address }}
+{% endif %}
 socket = {{ mysql_socket }}
 port = {{ mysql_port }}
 extra_port = {{ mysql_extra_port }}
