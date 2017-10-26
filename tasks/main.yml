@@ -5,6 +5,12 @@
   register: old_mariadb_installed
   failed_when: old_mariadb_installed.rc > 1
 
+- name: Stop MariaDB if Installed
+  systemd:
+   name="mariadb"
+   state="stopped"
+  when: old_mariadb_installed.rc == 0
+
 - name: Remove Existing MariaDB Install
   yum:
    name="{{ item }}"
@@ -13,7 +19,6 @@
    - "MariaDB"
    - "MariaDB-server"
    - "mysql-libs"
-  when: old_mariadb_installed.rc == 0
 
 - name: Allow MariaDB Port(s) In SELinux
   seboolean:
