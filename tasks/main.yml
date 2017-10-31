@@ -33,15 +33,6 @@
     setype="mysqld_port_t"
     state="present"
 
-- name: Creates PID Directory
-  file:
-    path="/var/run/mysql"
-    state="directory"
-    owner="mysql"
-    group="mysql"
-    mode=0755
-    recurse="yes"
-
 - name: Flush Yum Cache
   command: yum clean all
 
@@ -62,6 +53,14 @@
     - "MariaDB-server"
     - "MariaDB-client"
     - "mysql-libs"
+
+- name: Creates PID Directory
+  file:
+    path="{{ mysql_pid_file | dirname }}"
+    state="directory"
+    owner="mysql"
+    group="mysql"
+    mode=0755
 
 - name: Set Configuration File
   template:
