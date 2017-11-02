@@ -63,7 +63,7 @@ innodb_buffer_pool_instances = {{ mysql_innodb_buffer_pool_instances }}
 innodb_large_prefix = {{ mysql_innodb_large_prefix }}
 innodb_file_format = {{ mysql_innodb_file_format }}
 innodb_file_per_table = {{ mysql_innodb_file_per_table }}
-{% if mysql_innodb_log_file_size < 2000  %}
+{% if mysql_innodb_log_file_size|int < 2000  %}
 innodb_log_file_size = {{ mysql_innodb_log_file_size }}M
 {% else %}
 innodb_log_file_size = 2000M
