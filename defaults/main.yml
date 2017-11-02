@@ -3,7 +3,7 @@ mariadb_version: 10.2
 mysql_upgrade: false
 mysql_port: 3306
 mysql_socket: "/var/lib/mysql/mysql.sock"
-mysql_bind_address: "127.0.0.1"
+mysql_bind_address: "0.0.0.0"
 mysql_extra_port: 3307
 mysql_max_connect_errors:  1024
 mysql_max_connections: 512
