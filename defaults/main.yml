@@ -30,7 +30,7 @@ mysql_read_buffer_size: "1M"
 mysql_rnd_buffer_size: "1M"
 mysql_max_sort_length: 1024
 mysql_myisam_recover_options: "BACKUP,FORCE"
-mysql_innodb_buffer_pool_size: "{{ (ansible_memtotal_mb * 0.7)|int|abs }}"
+mysql_innodb_buffer_pool_size: "{{ (ansible_memtotal_mb * 0.7)|int|abs }}M"
 mysql_innodb_log_file_size: "{{ (mysql_innodb_buffer_pool_size|int * 0.1)|int|abs }}"
 mysql_innodb_buffer_pool_instances: 2
 mysql_innodb_large_prefix: 1
