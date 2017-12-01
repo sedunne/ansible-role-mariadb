@@ -25,6 +25,7 @@
     name="mysql_connect_any"
     state="true"
     persistent="yes"
+  ignore_errors: true
 
 - name: Explicitly Allow mysql_extra_port
   seport:
@@ -32,6 +33,7 @@
     proto="tcp"
     setype="mysqld_port_t"
     state="present"
+  ignore_errors: true
 
 - name: Flush Yum Cache
   command: yum clean all
