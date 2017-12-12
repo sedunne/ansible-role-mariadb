@@ -1,0 +1,9 @@
+---
+services: docker
+
+env:
+  - distro: centos7
+
+script:
+  - ${PWD}/tests/test.sh
+

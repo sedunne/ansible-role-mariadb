@@ -1,4 +1,6 @@
 ---
+remove_existing: false
+mariadb_package_state: latest
 mariadb_version: 10.2
 mysql_upgrade: false
 mysql_port: 3306
